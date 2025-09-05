@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Validator</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="head">
+      <div class="logo"></div>
+      <div>
+        <h1>Academia Validator</h1>
+        <p class="sub"> :O</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!--Left-->
+      <section class="card">
+        <div class="row" style="justify-content:space-between;margin-bottom:12px">
+          <div class="row">
+            <label class="small" for="lang">Language</label>
+            <select id="lang" title="OCR language">
+              <option value="eng" selected>English (eng)</option>
+              <option value="hin">Hindi (hin)</option>
+              <option value="eng+hin">English+Hindi</option>
+              <option value="spa">Spanish (spa)</option>
+              <option value="fra">French (fra)</option>
+              <option value="deu">German (deu)</option>
+            </select>
+            <label class="row small" style="gap:6px"><input id="psmSingle" type="checkbox"/> Single line (PSM 7)</label>
+          </div>
+          <div class="row">
+            <button class="btn sec" id="exampleBtn" type="button">Use sample</button>
+            <button class="btn" id="selectBtn" type="button">Upload image</button>
+            <input id="file" type="file" accept="image/*" hidden />
+          </div>
+        </div>
+
+        <div id="drop" class="drop" tabindex="0">
+          <div>
+            <p style="margin:0 0 8px"><strong>Drag & drop</strong> an image here</p>
+            <p class="small">or click <em>Upload image</em> above • You can also paste (Ctrl/Cmd+V)</p>
+          </div>
+        </div>
+
+        <div id="previewWrap" style="display:none;margin-top:12px">
+          <img id="preview" class="thumb" alt="preview"/>
+          <div class="meta">
+            <span id="filename">—</span>
+            <span id="filesize">—</span>
+          </div>
+        </div>
+
+        <div class="progress" aria-hidden="true"><div id="bar" class="bar"></div></div>
+        <div id="status" class="small">Ready.</div>
+        <div id="err" class="error small" role="alert" style="display:none"></div>
+        <div class="chips" id="infoChips"></div>
+      </section>
+
+      <!-- Right -->
+      <section class="card">
+        <div class="row" style="justify-content:space-between;margin-bottom:8px">
+          <div class="row">
+            <button class="btn" id="runBtn" type="button">Run OCR</button>
+            <button class="btn sec" id="clearBtn" type="button" title="Clear input & output">Clear</button>
+          </div>
+          <div class="row">
+            <button class="btn sec" id="copyBtn" type="button">Copy text</button>
+            <button class="btn sec" id="saveBtn" type="button">Download .txt</button>
+          </div>
+        </div>
+      
+        <textarea id="output" placeholder="Extracted text will appear here…"></textarea>
+      
+        <div id="nameCard" style="
+               margin-top:12px;
+               padding:16px;
+               border-radius:12px;
+               background: rgba(20, 20, 20, 0.7);
+               backdrop-filter: blur(12px); 
+               -webkit-backdrop-filter: blur(12px);
+               box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+               color: #f1f1f1;
+               text-align: center; 
+             ">
+          <h3 style="margin:0 0 8px 0; font-size:25px; font-weight:600; color:#fff;">
+            Certificate Holder
+          </h3>
+          <p id="holderName" style="margin:0; font-weight:bold; font-size:30px; color:#e0e0e0;">
+            No name extracted yet
+          </p>
+        </div>
+      
+        <p class="footer">
+          :D
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <!--Tesseract.js-->
+  <script src="https://unpkg.com/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+  <script src="ocr.js"></script>
+</body>
+</html>
